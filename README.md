@@ -65,14 +65,14 @@ XX = Made and implemented;
 
 ## classes e seus métodos
 
-The user contains his life, likes his animal, vehicle, job, document
+The user contains his life, likes his horta, vehicle, job, document
 
 class user
     - id
     - name
     - password
 
-class animal
+class horta
     - specie
     - color
 

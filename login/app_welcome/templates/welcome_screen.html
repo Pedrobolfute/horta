@@ -27,7 +27,7 @@
 
   <header class="header">
     <h1>Bem-vindo à Fazenda {{user.name_user}}</h1>
-    <div class="animal-count">
+    <div class="horta-count">
       <ul>
           {% for specie, count in species_totals.items %}
               <li data-specie="{{ specie|lower }}" data-count="{{ count }}">
@@ -43,39 +43,39 @@
   <section class="content">
     <h1>Animais</h1>
 
-    <ol class="animals">
-      {% if animals %}
+    <ol class="hortas">
+      {% if hortas %}
       <!-- Iterar sobre os animais no contexto -->
-      {% for animal in animals %}
-      <li class="animal">
+      {% for horta in hortas %}
+      <li class="horta">
         <span class="number">#{{ forloop.counter|default:0 }}</span>
-        <span class="name">{{ animal.specie_animal|capfirst }}</span>
+        <span class="name">{{ horta.specie_horta|capfirst }}</span>
     
         <div class="detail">
           <ol class="types">
-            {% for food in animal.foods.all %}
+            {% for food in horta.foods.all %}
             <li class="type">{{ food.food_name }}</li>
             {% empty %}
             <li class="type">Sem alimentos cadastrados</li>
             {% endfor %}
           </ol>
     
-          <!-- Imagem fictícia baseada na espécie do animal -->
-          <img src="{% static 'app_welcome/img/svg/' %}{{ animal.specie_animal }}.svg" 
-          alt="{{ animal.specie_animal|capfirst }}">
+          <!-- Imagem fictícia baseada na espécie do horta -->
+          <img src="{% static 'app_welcome/img/svg/' %}{{ horta.specie_horta }}.svg" 
+          alt="{{ horta.specie_horta|capfirst }}">
         </div>
       </li>
       {% empty %}
-      <li class="animal no-data">
-        <span class="name">Nenhum animal cadastrado</span>
+      <li class="horta no-data">
+        <span class="name">Nenhum horta cadastrado</span>
       </li>
       {% endfor %}
       {% else %}
     
   {% endif %}
     
-      <!-- Formulário para adicionar animal -->
-      <li class="animal add">
+      <!-- Formulário para adicionar horta -->
+      <li class="horta add">
         <span class="number">#000</span>
         <span class="name">Adicionar</span>
     
@@ -88,10 +88,10 @@
           <img src="{% static 'app_welcome/img/svg/add.svg' %}" alt="Adicionar Horta">
         </div>
     
-        <form class="animal-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;" data-img-base="{% static 'app_welcome/img/svg/' %}">
+        <form class="horta-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;" data-img-base="{% static 'app_welcome/img/svg/' %}">
           {% csrf_token %}
-          <label for="animal-select">Escolha o animal:</label>
-          <select id="animal-select" name="animal">
+          <label for="horta-select">Escolha o horta:</label>
+          <select id="horta-select" name="horta">
             <option value="boi">Boi</option>
             <option value="vaca">Vaca</option>
             <option value="cavalo">Cavalo</option>
@@ -100,8 +100,8 @@
             <option value="peixe">Peixe</option>
           </select>
     
-          <label for="animal-color">Cor do animal:</label>
-          <input type="text" id="animal-color" name="color" placeholder="Digite a cor do animal">
+          <label for="horta-color">Cor do horta:</label>
+          <input type="text" id="horta-color" name="color" placeholder="Digite a cor do horta">
     
           <button type="submit">Adicionar</button>
         </form>

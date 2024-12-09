@@ -38,4 +38,4 @@ def registerMe(request):
         else:
             return JsonResponse({"message": "Preencha campos de Login, senha e confirmação da senha", "status": "ok"})
 
-            ## quando salva user sem passar um animal, tabela animal da BO
+            ## quando salva user sem passar um horta, tabela horta da BO

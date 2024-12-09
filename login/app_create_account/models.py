@@ -11,24 +11,24 @@ class User(models.Model):
 
 
 class Horta(models.Model):
-    specie_animal = models.CharField(max_length=50, blank=True, null=True)
-    color_animal = models.CharField(max_length=50, blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='animal')
+    specie_horta = models.CharField(max_length=50, blank=True, null=True)
+    color_horta = models.CharField(max_length=50, blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='horta')
 
     def __str__(self) -> str:
-        return self.specie_animal if self.specie_animal else "None"
+        return self.specie_horta if self.specie_horta else "None"
     
     def delete(self, using=None, keep_parents=False):
-        self.specie_animal = "None"
-        self.color_animal = "None"
+        self.specie_horta = "None"
+        self.color_horta = "None"
         self.save()
 
 class HortaNutriente(models.Model):
-    animal = models.ForeignKey(Horta, on_delete=models.CASCADE, related_name='foods')
+    horta = models.ForeignKey(Horta, on_delete=models.CASCADE, related_name='foods')
     food_name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        return f"{self.food_name} ({self.animal.specie_animal})"
+        return f"{self.food_name} ({self.horta.specie_horta})"
 
 class Job(models.Model):
     company_job = models.CharField(max_length=50, blank=True, null=True)
