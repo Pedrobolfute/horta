@@ -1,18 +1,18 @@
-const addAnimal = document.querySelector('.animal.add');
-const animalForm = addAnimal.querySelector('.animal-form');
+const addHorta = document.querySelector('.animal.add');
+const animalForm = addHorta.querySelector('.animal-form');
 const animalOwner = document.querySelector('#owner')
 
 // Expande o card e exibe o formulário ao clicar no card
-addAnimal.addEventListener('click', (e) => {
+addHorta.addEventListener('click', (e) => {
   e.stopPropagation(); // Evita que o evento se propague para o clique global
-  addAnimal.classList.add('expanded');
+  addHorta.classList.add('expanded');
   animalForm.style.display = 'flex';
 });
 
 // Fecha o card se clicar fora ou se o botão de adicionar for clicado
 document.addEventListener('click', (e) => {
-  if (!addAnimal.contains(e.target)) {
-    addAnimal.classList.remove('expanded');
+  if (!addHorta.contains(e.target)) {
+    addHorta.classList.remove('expanded');
     animalForm.style.display = 'none';
   }
 });
@@ -21,7 +21,7 @@ document.addEventListener('click', (e) => {
 animalForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const selectedAnimal = document.querySelector('#animal-select').value;
+  const selectedHorta = document.querySelector('#animal-select').value;
   const animalColor = document.querySelector('#animal-color').value;
   const owner = sessionStorage.getItem('owner');
 
@@ -38,7 +38,7 @@ animalForm.addEventListener('submit', async (e) => {
         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value, // Certifique-se de incluir o CSRF token
       },
       body: new URLSearchParams({
-        animal: selectedAnimal,
+        animal: selectedHorta,
         color: animalColor,
         owner: owner,
       }),
@@ -50,27 +50,27 @@ animalForm.addEventListener('submit', async (e) => {
     // Verifica se o cadastro foi bem-sucedido
     const animalsList = document.querySelector('.animals');
     if (response.ok && result.message) {
-      alert("Animal cadastrado com sucesso!");
+      alert("Horta cadastrado com sucesso!");
 
-      updateHeaderCounts(selectedAnimal);
+      updateHeaderCounts(selectedHorta);
 
       
       // Adiciona o novo animal na lista dinamicamente
       const imgBase = animalForm.dataset.imgBase;
 
-      const newAnimal = document.createElement('li');
-      newAnimal.classList.add('animal');
-      newAnimal.innerHTML = `
+      const newHorta = document.createElement('li');
+      newHorta.classList.add('animal');
+      newHorta.innerHTML = `
         <span class="number">#${result.new_animal_id}</span>
-        <span class="name">${selectedAnimal.charAt(0).toUpperCase() + selectedAnimal.slice(1)}</span>
+        <span class="name">${selectedHorta.charAt(0).toUpperCase() + selectedHorta.slice(1)}</span>
         <div class="detail">
           <ol class="types">
             ${result.food_list.length > 0 ? result.food_list.map(food => `<li class="type">${food}</li>`).join('') : '<li class="type">Sem alimentos cadastrados</li>'}
           </ol>
-          <img src="${imgBase}${selectedAnimal}.svg" alt="${selectedAnimal}">
+          <img src="${imgBase}${selectedHorta}.svg" alt="${selectedHorta}">
         </div>
       `;
-      animalsList.insertBefore(newAnimal, addAnimal);
+      animalsList.insertBefore(newHorta, addHorta);
 
 
 
@@ -78,7 +78,7 @@ animalForm.addEventListener('submit', async (e) => {
       animalForm.reset();
 
       // Fechar o card após cadastro
-      addAnimal.classList.remove('expanded');
+      addHorta.classList.remove('expanded');
       animalForm.style.display = 'none';
     } else {
       alert("Erro ao cadastrar animal: " + result.error || "Tente novamente.");

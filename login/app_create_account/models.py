@@ -10,7 +10,7 @@ class User(models.Model):
         return self.name_user
 
 
-class Animal(models.Model):
+class Horta(models.Model):
     specie_animal = models.CharField(max_length=50, blank=True, null=True)
     color_animal = models.CharField(max_length=50, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='animal')
@@ -23,8 +23,8 @@ class Animal(models.Model):
         self.color_animal = "None"
         self.save()
 
-class AnimalFood(models.Model):
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='foods')
+class HortaNutriente(models.Model):
+    animal = models.ForeignKey(Horta, on_delete=models.CASCADE, related_name='foods')
     food_name = models.CharField(max_length=50)
 
     def __str__(self) -> str:

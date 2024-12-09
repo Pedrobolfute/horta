@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from app_create_account.models import User, Animal, AnimalFood
+from app_create_account.models import User, Horta, HortaNutriente
 from django.db.models import Count
 
 # Create your views here.
@@ -9,22 +9,22 @@ def welcome(request):
     if request.method == "GET":
          # Obter o ID do usuário a partir do sessionStorage (passado pelo frontend)
         owner_id = request.session.get('user_name')
-        animals = []  # Inicializar variável para evitar erro se `owner_id` não for encontrado
+        hortas = []  # Inicializar variável para evitar erro se `owner_id` não for encontrado
         species_totals = {}  # Inicializar o dicionário
         if owner_id:
             try:
                 owner = User.objects.get(name_user=owner_id)
-                animals = Animal.objects.filter(owner=owner)  # Filtrar animais do usuário
+                hortas = Horta.objects.filter(owner=owner)  # Filtrar animais do usuário
 
                 # Contar os animais por espécie
-                species_counts = animals.values('specie_animal').annotate(total=Count('id'))
-                species_totals = {entry['specie_animal']: entry['total'] for entry in species_counts}
+                species_counts = hortas.values('specie_horta').annotate(total=Count('id'))
+                species_totals = {entry['specie_horta']: entry['total'] for entry in species_counts}
             except User.DoesNotExist:
                 return JsonResponse({'error': 'Usuario nao encontrado.'}, status=404)
-        return render(request, 'welcome_screen.html', {'animals': animals, 'species_totals': species_totals})
+        return render(request, 'welcome_screen.html', {'hortas': hortas, 'species_totals': species_totals})
     
     elif request.method == "POST":
-        # Mapeamento fixo de alimentos
+        # Mapeamento fixo de nutrientes
         ANIMAL_FOOD_MAP = {
             'boi': ['Capim', 'Silagem'],
             'vaca': ['Capim', 'Ração'],
@@ -34,12 +34,12 @@ def welcome(request):
             'peixe': ['Alga', 'Larvas'],
         }
         # Receber os dados do front-end
-        specie_animal = request.POST.get('animal')
-        color_animal = request.POST.get('color')
+        specie_horta = request.POST.get('horta')
+        color_horta = request.POST.get('color')
         owner_id = request.POST.get('owner')  # ID do usuário que será o dono
 
         # Validar dados obrigatórios
-        if not specie_animal or not color_animal or not owner_id:
+        if not specie_horta or not color_horta or not owner_id:
             return JsonResponse({'error': 'Dados incompletos.'}, status=400)
 
         try:
@@ -48,27 +48,27 @@ def welcome(request):
             owner.save()
 
             # Contar o número de animais já cadastrados para o usuário
-            animal_count = Animal.objects.filter(owner=owner).count()
+            horta_count = Horta.objects.filter(owner=owner).count()
 
-            # Criar o animal
-            animal = Animal.objects.create(
-                specie_animal=specie_animal,
-                color_animal=color_animal,
+            # Criar o horta
+            horta = Horta.objects.create(
+                specie_horta=specie_horta,
+                color_horta=color_horta,
                 owner=owner
             )
-            animal.save()
+            horta.save()
 
-            # Associar alimentos ao animal criado
-            food_list = ANIMAL_FOOD_MAP.get(specie_animal.lower(), [])
+            # Associar nutrientes ao horta criado
+            food_list = ANIMAL_FOOD_MAP.get(specie_horta.lower(), [])
             for food in food_list:
-                animal_food = AnimalFood(animal=animal, food_name=food)
-                animal_food.save()  # Salvando cada alimento no banco
+                horta_food = HortaNutriente(horta=horta, food_name=food)
+                horta_food.save()  # Salvando cada alimento no banco
 
-            # Resposta com ID do animal e alimentos
+            # Resposta com ID do horta e nutrientes
             response_data = {
-                'message': 'Animal e alimentos adicionados com sucesso!',
-                'new_animal_id': animal_count+1,
-                'food_list': food_list,  # Passar os alimentos para o frontend
+                'message': 'Horta e nutrientes adicionados com sucesso!',
+                'new_horta_id': horta_count+1,
+                'food_list': food_list,  # Passar os nutrientes para o frontend
             }
 
             return JsonResponse(response_data, status=201)
