@@ -16,14 +16,13 @@
 
         <header>
             <div class="title">
-                <div class="title_img"><img src="{% static 'app_create_account/img/tv_sign_48_black.svg'%}" alt="tv_sign_24"></div>
-                <p>Register Me Django</p>
+                <p>Registrar</p>
             </div>
         </header>
 
         <main>
             <div class="login_area">
-                <div class="login_title">Register</div>
+                <div class="login_title">Registrar</div>
                 <div class="login">
                     <form class="register_form" action="{% url 'register' %}" name="login_credentials" method="POST">{% csrf_token %}
                         <div class="credential_info">
@@ -84,9 +83,6 @@
 
         <footer>
             <div class="author">
-                <a href="https://www.github.com/pedrobolfute" target="_blank">
-                    @Pedrobolfute
-                </a>
             </div>
         </footer>
     </div>
