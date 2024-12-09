@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="{% static 'app_login/css/login_screen.css' %}">
+    <link rel="shortcut icon" href="{% static 'app_login/img/login_24px_white.svg' %}">
+</head>
+<body>
+    <div class="container">
+ 
+        <header>
+            <div class="title">
+                <div class="title_img"><img src="{% static 'app_login/img/tv_sign_48_black.svg' %}" alt="tv_sign_24"></div>
+                <p>Login Me Django</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="login_area">
+                <div class="login_title">Login</div>
+                <div class="login">
+                    <form action="{% url 'login' %}" name="login_credentials" method="POST">{% csrf_token %}
+                        <span class="name">
+                            <input type="text" placeholder="Nome" name="user_name">
+                        </span>
+                        <span class="password">
+                            <input type="text" placeholder="Senha" name="user_pass">
+                        </span>
+                        <span class="submit">
+                            <input type="submit" name="Enviar" value="Enviar" class="send">
+                            <input type="submit" name="Criar Conta" value="Criar Conta" class="create">
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="author">
+                <a href="https://www.github.com/pedrobolfute" target="_blank">
+                    @Pedrobolfute
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'app_login/js/login_screen.js' %}"></script>
+</body>
+</html>

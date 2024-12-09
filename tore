@@ -1,0 +1,11 @@
+[33m6dc00e1[m[33m ([m[1;36mHEAD -> [m[1;32mstage[m[33m, [m[1;31morigin/stage[m[33m)[m HEAD@{0}: commit: added: info for classes
+[33m77d4bcc[m HEAD@{1}: commit: added classes on readme
+[33m7a1c0cf[m HEAD@{2}: commit: bug fix: shortcut ico - welcome page - added
+[33m1f3dd56[m HEAD@{3}: commit: new feat: screen administrator
+[33m7a90aa5[m HEAD@{4}: commit: new feat: screen_welcome
+[33ma3a44cc[m HEAD@{5}: commit: new feat: screen change my account
+[33mc194665[m HEAD@{6}: commit: newFeat: Screen Create Account
+[33mf5ce028[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: checkout: moving from main to stage
+[33mf5ce028[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: commit: add: login_screen
+[33m7612d14[m HEAD@{9}: commit: first commit: readme idea
+[33mb621687[m HEAD@{10}: clone: from github.com:Pedrobolfute/loginMeDjango.git

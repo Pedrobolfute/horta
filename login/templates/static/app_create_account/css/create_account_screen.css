@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
+/* All */
+*{
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    color: aliceblue;
+    font-family: "Cinzel", system-ui;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    background-color: #333;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    /* overflow: hidden; */
+}
+
+.container{
+    height: 100%;
+    width: 100%; 
+}
+
+/* Header */
+header{
+    height: 20%;
+    background-color: #E5D600;
+
+    display: flex;
+    align-items: center;
+}
+
+header .title{
+    display: flex;
+    align-items: center;
+}
+
+header .title p{
+    color: black;
+    font-weight: 650;
+    font-size: 1.5rem;
+}
+
+/* Main */
+main{
+    background-color: white;
+    height: 70%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_area{
+    max-width: 60%;
+    max-height: 60%;
+    height: 500px;
+    width: 500px;
+
+    border: #333 solid;
+    overflow-x: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.login_area .login_title{
+    color: rgb(0, 0, 0);
+    font-weight: 900;
+    font-size: 1.25rem;
+}
+
+.login_area .login{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.login_area .login form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 11.5rem;
+    max-width: 11.5rem;
+}
+
+.login_area .login form .credential_info span{
+    display: flex;
+    justify-content: center;
+}
+.login_area input[type=text]{
+    margin-top: 0.25rem;
+    width: 95%;
+    height: 35px;
+    background-color: rgb(241, 241, 241);
+    color: black;
+    font-weight: 900;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login_area input[type="submit"]{
+    margin-top: 1rem;
+    color: rgb(255, 255, 255);
+    height: 35px;
+    width: 100%;
+    border: #474200 solid 0.25rem;
+    background-color: #474200;
+    margin-bottom: 2rem;
+}
+
+.more_info{
+    margin-top: 1rem;
+    width: 11rem;
+    max-width: 11rem;
+    height: 100%;
+}
+
+.more_info .info *{
+    text-align: left;
+    color: black;
+    font-weight: 900;
+}
+
+.more_info .info{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type='number']{
+    margin-top: 0.5rem;
+    width: 11.25rem;
+}
+
+.quest_label{
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.more_info .hidden{
+    width: 11.75rem;
+}
+
+
+
+
+/* Footer */
+footer{
+    background-color: #E5D600;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.author a{
+    color: black;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+@media screen and (min-width: 425px) {
+    header .title p{
+        font-size: 2rem;
+    }
+
+    .login_area .login_title{
+        font-size: 1.5rem;
+
+    }
+
+    .login_area .login form .credential_info .more_info input[type="text"]{
+        margin-top: 1rem;
+        width: 100%;
+    }
+}
+
+@media screen and (min-height: 720px) {
+
+    header .title p{
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .login_area .login_title{
+        font-size: 1.75rem;
+    }
+    
+    .login_area .login form .credential_info input[type="text"]{
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+}
