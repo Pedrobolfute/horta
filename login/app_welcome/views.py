@@ -25,14 +25,15 @@ def welcome(request):
     
     elif request.method == "POST":
         # Mapeamento fixo de nutrientes
-        ANIMAL_FOOD_MAP = {
-            'boi': ['Capim', 'Silagem'],
-            'vaca': ['Capim', 'Ração'],
-            'cavalo': ['Feno', 'Aveia'],
-            'porco': ['Milho', 'Farelo de Soja'],
-            'galinha': ['Milho', 'Farelo de Trigo'],
-            'peixe': ['Alga', 'Larvas'],
+        HORTA_NUTRIENTE_MAP = {
+            'cenoura': ['Nitrogênio', 'Potássio'],
+            'tomate': ['Nitrogênio', 'Potássio'],
+            'coentro': ['Nitrogênio', 'Fósforo'],
+            'almeirao': ['Nitrogênio', 'Potássio'],
+            'alface': ['Nitrogênio', 'Potássio'],
+            'repolho': ['Nitrogênio', 'Potássio']
         }
+
         # Receber os dados do front-end
         specie_horta = request.POST.get('horta')
         color_horta = request.POST.get('color')
@@ -59,16 +60,16 @@ def welcome(request):
             horta.save()
 
             # Associar nutrientes ao horta criado
-            food_list = ANIMAL_FOOD_MAP.get(specie_horta.lower(), [])
-            for food in food_list:
-                horta_food = HortaNutriente(horta=horta, food_name=food)
-                horta_food.save()  # Salvando cada alimento no banco
+            nutriente_list = HORTA_NUTRIENTE_MAP.get(specie_horta.lower(), [])
+            for nutriente in nutriente_list:
+                horta_nutriente = HortaNutriente(horta=horta, nutriente_name=nutriente)
+                horta_nutriente.save()  # Salvando cada alimento no banco
 
             # Resposta com ID do horta e nutrientes
             response_data = {
                 'message': 'Horta e nutrientes adicionados com sucesso!',
                 'new_horta_id': horta_count+1,
-                'food_list': food_list,  # Passar os nutrientes para o frontend
+                'nutriente_list': nutriente_list,  # Passar os nutrientes para o frontend
             }
 
             return JsonResponse(response_data, status=201)

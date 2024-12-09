@@ -26,7 +26,7 @@
 <body>
 
   <header class="header">
-    <h1>Bem-vindo à Fazenda {{user.name_user}}</h1>
+    <h1>Horta do(a)</h1>
     <div class="horta-count">
       <ul>
           {% for specie, count in species_totals.items %}
@@ -53,8 +53,8 @@
     
         <div class="detail">
           <ol class="types">
-            {% for food in horta.foods.all %}
-            <li class="type">{{ food.food_name }}</li>
+            {% for horta in horta.hortas.all %}
+            <li class="type">{{ horta.nutriente_name }}</li>
             {% empty %}
             <li class="type">Sem alimentos cadastrados</li>
             {% endfor %}
@@ -67,7 +67,7 @@
       </li>
       {% empty %}
       <li class="horta no-data">
-        <span class="name">Nenhum horta cadastrado</span>
+        <span class="name">Nenhum cultura cadastrada</span>
       </li>
       {% endfor %}
       {% else %}
@@ -81,8 +81,8 @@
     
         <div class="detail">
           <ol class="types">
-            <li class="type">tipo 1</li>
-            <li class="type">tipo 2</li>
+            <li class="type">nutriente 1</li>
+            <li class="type">nutriente 2</li>
           </ol>
     
           <img src="{% static 'app_welcome/img/svg/add.svg' %}" alt="Adicionar Horta">
@@ -90,18 +90,18 @@
     
         <form class="horta-form" action="{% url 'welcome' %}" method="POST" name="login_credentials" style="display: none;" data-img-base="{% static 'app_welcome/img/svg/' %}">
           {% csrf_token %}
-          <label for="horta-select">Escolha o horta:</label>
+          <label for="horta-select">Escolha a cultura:</label>
           <select id="horta-select" name="horta">
-            <option value="boi">Boi</option>
-            <option value="vaca">Vaca</option>
-            <option value="cavalo">Cavalo</option>
-            <option value="porco">Porco</option>
-            <option value="galinha">Galinha</option>
-            <option value="peixe">Peixe</option>
+            <option value="tomate">tomate</option>
+            <option value="cenoura">cenoura</option>
+            <option value="coentro">coentro</option>
+            <option value="almeirao">almeirao</option>
+            <option value="alface">alface</option>
+            <option value="repolho">repolho</option>
           </select>
     
-          <label for="horta-color">Cor do horta:</label>
-          <input type="text" id="horta-color" name="color" placeholder="Digite a cor do horta">
+          <label for="horta-color">Cor da cultura:</label>
+          <input type="text" id="horta-color" name="color" placeholder="Digite a cor da cultura">
     
           <button type="submit">Adicionar</button>
         </form>

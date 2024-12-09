@@ -24,11 +24,11 @@ class Horta(models.Model):
         self.save()
 
 class HortaNutriente(models.Model):
-    horta = models.ForeignKey(Horta, on_delete=models.CASCADE, related_name='foods')
-    food_name = models.CharField(max_length=50)
+    horta = models.ForeignKey(Horta, on_delete=models.CASCADE, related_name='hortas')
+    nutriente_name = models.CharField(max_length=50)
 
     def __str__(self) -> str:
-        return f"{self.food_name} ({self.horta.specie_horta})"
+        return f"{self.nutriente_name} ({self.horta.specie_horta})"
 
 class Job(models.Model):
     company_job = models.CharField(max_length=50, blank=True, null=True)

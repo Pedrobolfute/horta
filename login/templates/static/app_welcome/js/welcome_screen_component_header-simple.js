@@ -26,7 +26,7 @@ hortaForm.addEventListener('submit', async (e) => {
   const owner = sessionStorage.getItem('owner');
 
   if (!hortaColor) {
-    alert("Cadastro inválido: O campo de cor não pode estar vazio.");
+    alert("Cadastro inválido: a cor da cultura representa seu nutriente.");
     return; // Interrompe o envio do formulário
   }
 
@@ -50,7 +50,7 @@ hortaForm.addEventListener('submit', async (e) => {
     // Verifica se o cadastro foi bem-sucedido
     const hortasList = document.querySelector('.hortas');
     if (response.ok && result.message) {
-      alert("Horta cadastrado com sucesso!");
+      alert("cultura cadastrada com sucesso!");
 
       updateHeaderCounts(selectedHorta);
 
@@ -65,7 +65,7 @@ hortaForm.addEventListener('submit', async (e) => {
         <span class="name">${selectedHorta.charAt(0).toUpperCase() + selectedHorta.slice(1)}</span>
         <div class="detail">
           <ol class="types">
-            ${result.food_list.length > 0 ? result.food_list.map(food => `<li class="type">${food}</li>`).join('') : '<li class="type">Sem alimentos cadastrados</li>'}
+            ${result.nutriente_list.length > 0 ? result.nutriente_list.map(nutriente => `<li class="type">${nutriente}</li>`).join('') : '<li class="type">Sem alimentos cadastrados</li>'}
           </ol>
           <img src="${imgBase}${selectedHorta}.svg" alt="${selectedHorta}">
         </div>
